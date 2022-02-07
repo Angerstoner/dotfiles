@@ -7,7 +7,7 @@ config_paths = {
     "gtk3.0.config": "/home/angerstoner/.config/gtk-3.0/settings.ini",
     "import-gsettings": "/home/angerstoner/.config/gtk-3.0/import-gsettings",
     "sway.config": "/home/angerstoner/.config/sway/config",
-    "termite.config": "/home/angerstoner/.config/termite/config",
+    "alacritty.config": "/home/angerstoner/.config/alacritty/alacritty.yml",
     "waybar.config": "/home/angerstoner/.config/waybar/config",
     "waybar.style": "/home/angerstoner/.config/waybar/style.css",
     "zsh.config": "/home/angerstoner/.zshrc",
