@@ -25,10 +25,10 @@ class Screen:
 
 
 screen_identifiers_home = [
-    Screen('Dell Inc.', 'Dell U4919DW', 'CQXTY2', 0),
-    Screen('Acer Technologies', 'Acer K222HQL', 'T1LEE0054201', 1920),
-    Screen('Goldstar Company Ltd', '24MB56', '', 3840),
-    Screen('Goldstar Company Ltd', '24MB56', '508NTDVBJ122', 5760),
+    # Screen('Dell Inc.', 'Dell U4919DW', 'CQXTY2', 0),
+    Screen('Acer Technologies', 'Acer K222HQL', 'T1LEE0054201', 0),
+    Screen('Goldstar Company Ltd', '24MB56', '', 1920),
+    Screen('Goldstar Company Ltd', '24MB56', '508NTDVBJ122', 3840),
 ]
 
 screen_identifiers_work = [
@@ -56,10 +56,12 @@ def get_connected_screens(output_json, screen_identifiers: list[Screen]) -> list
     return connected_screens
 
 
-def dock(screens: list[Screen]):
+def dock(screens: list[Screen], undock_internal=False):
     for screen in screens:
         subprocess.run(['sway', 'output', screen.output_port, 'pos', f'{screen.y_pos}', '0'])  #
         subprocess.run(['sway', 'output', screen.output_port, 'enable'])
+    if undock_internal:
+        subprocess.run(['sway', 'output', 'eDP-1', 'disable'])
 
 
 def undock():
@@ -77,6 +79,6 @@ def restore_wallpaper():
 if is_dock_connected(dock_identifier_work):
     dock(get_connected_screens(get_output_json(), screen_identifiers_work))
 elif is_dock_connected(dock_identifier_home):
-    dock(get_connected_screens(get_output_json(), screen_identifiers_home))
+    dock(get_connected_screens(get_output_json(), screen_identifiers_home), undock_internal=True)
 else:
     undock()
